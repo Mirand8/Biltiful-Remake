@@ -3,9 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Biltiful.DataBase;
 
 namespace ProjBiltiful.DataBase
@@ -33,10 +30,9 @@ namespace ProjBiltiful.DataBase
             }
         }
 
-        public bool ClienteJaExiste(string cpf)
+        public bool JaExiste(string cpf)
         {
             bool existe;
-            cpf = cpf.Length == 11 ? cpf.Insert(3, ".").Insert(7, ".").Insert(11, "-") : cpf;
             var sql = $"SELECT COUNT(1) FROM Cliente WHERE CPF = '{cpf}'";
 
             using (var connection = new SqlConnection(DBHelper.GetDBConnectionString()))
@@ -157,6 +153,21 @@ namespace ProjBiltiful.DataBase
                 cmd.ExecuteNonQuery();
                 connection.Close();
             }
+        }
+
+        public Cliente ProcurarBloqueado(string cpf)
+        {
+            return null;
+        }
+
+        public void Bloquear(string cpf)
+        {
+            
+        }
+
+        public void Desbloquear(string cpf)
+        {
+
         }
     }
 }
